@@ -9,6 +9,8 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
+                        <input id="status" type="hidden" name="status" value="enable">
+                        <input id="role_id" type="hidden" name="role_id" value="1">
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
