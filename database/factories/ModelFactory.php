@@ -18,7 +18,36 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => $password ?: $password = bcrypt('rahasia'),
+        'status' => 'enable',
+        'role_id' => $faker->randomDigitNotNull,
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Website::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'domain' => $faker->domainName,
+    ];
+});
+
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'name' => $faker->sentence(4),
+    ];
+});
+
+$factory->define(App\Catalogue::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'url' => $faker->url,
+        'user_id' => $faker->randomDigitNotNull,
+        'product_id' => $faker->randomDigitNotNull,
+        'website_id' => $faker->randomDigitNotNull,
     ];
 });

@@ -17,5 +17,10 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/website', 'HomeController@website')->name('website');
+Route::get('/product', 'HomeController@product')->name('product');
+Route::get('/catalogue', 'HomeController@catalogue')->name('catalogue');
+Route::get('/journal/catalogue', 'HomeController@journalCatalogue')->name('catalogue_journal');
+Route::post('/journal/catalogue', 'HomeController@catalogueUpdate');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,65 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts = \App\Catalogue::whereHas('user', function ($query) {
+            $query->where('user_id', 'like', Auth::id());
+        })->orderBy('updated_at', 'desc')->paginate(10);
+
+        return view('home', ['posts' => $posts]);
+    }
+
+    public function website()
+    {
+        $website = \App\Website::all();
+
+        return view('website', ['sites' => $website]);
+    }
+
+    public function product()
+    {
+        $product = \App\Product::paginate(10);
+
+        return view('product', ['product' => $product]);
+    }
+
+    public function catalogue()
+    {
+        $links = \App\Catalogue::paginate(10);
+
+        return view('catalogue', ['links' => $links]);
+    }
+
+    public function journalCatalogue()
+    {
+        $websites = \App\Website::all();
+        $products = \App\Product::all();
+
+        return view('catalogue-journal', ['websites' => $websites, 'products' => $products]);
+    }
+
+    public function catalogueUpdate(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            array(
+                'url' => 'required|max:255',
+                'website_id' => 'required',
+                'product_id' => 'required',
+                'user_id' => 'required',
+            )
+        );
+
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        }
+
+        $record = new \App\Catalogue;
+        $record->url = $request->url;
+        $record->user_id = $request->user_id;
+        $record->product_id = $request->product_id;
+        $record->website_id = $request->website_id;
+        $record->save();
+
+        return redirect('/');
     }
 }
