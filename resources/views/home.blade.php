@@ -41,6 +41,45 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">Pos Katalog Saya</div>
+
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>URL Pos</th>
+                                <th>Tanggal Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($posts as $post)
+                                <tr>
+                                    <td>
+                                        <a href="//{{ $post->url }}" target="_blank" rel="noopener noreferrer">
+                                            {{ $post->url }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $post->updated_at }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    {{ $posts->links() }}
+                </div>
+
+                <div class="panel-footer">
+                    <div class="btn-group btn-group-justified" role="group">
+                    <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
+                    <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
