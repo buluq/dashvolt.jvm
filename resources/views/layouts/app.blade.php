@@ -42,8 +42,8 @@
                             </a>
 
                              <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('product') }}">Produk</a></li>
-                                <li><a href="{{ route('website') }}">Website</a></li>
+                                <li><a href="{{ route('product.index') }}">Produk</a></li>
+                                <li><a href="{{ route('website.index') }}">Website</a></li>
                                 <li><a href="{{ route('catalogue') }}">Katalog</a></li>
                             </ul>
                         </li>

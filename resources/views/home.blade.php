@@ -74,8 +74,9 @@
 
                 <div class="panel-footer">
                     <div class="btn-group btn-group-justified" role="group">
-                    <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
-                    <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
+                        <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
+                        <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,7 +89,7 @@
     $("#edit").click(
         function(event)
         {
-            event.preventDefault();
+            // event.preventDefault();
             $("#name").prop("readonly", false);
             $("#email").prop("readonly", false);
             $("#edit").prop("disabled", true);
