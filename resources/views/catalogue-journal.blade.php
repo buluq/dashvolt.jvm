@@ -50,7 +50,7 @@
 
                             <div class="form-group">
                                 <label for="product_id" class="control-label col-sm-2">
-                                    Alamat website
+                                    Nama produk
                                 </label>
 
                                 <div class="col-sm-10">

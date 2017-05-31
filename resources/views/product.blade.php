@@ -17,6 +17,10 @@
 
                         {{ $product->links() }}
                     </div>
+
+                    <div class="panel-footer">
+                        <a href="{{ route('product.create') }}" class="btn btn-primary btn-block" role="button">Tambahkan produk</a>
+                    </div>
                 </div>
             </div>
         </div>
