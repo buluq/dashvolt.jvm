@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Yajra\Datatables\Datatables;
 
 class HomeController extends Controller
 {
@@ -48,6 +49,12 @@ class HomeController extends Controller
 
     public function catalogue()
     {
+        $model = \App\Catalogue::query()->with('user')->with('product')->with('website');
+
+        if (request()->ajax()) {
+            return Datatables::of($model)->make(true);
+        }
+
         $links = \App\Catalogue::paginate(10);
 
         return view('catalogue', ['links' => $links]);
