@@ -3,7 +3,75 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">Statistik Pos Katalog Saya</div>
+
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Jumlah pos keseluruhan</th>
+                            <td>{{ $quantity['total'] }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Jumlah pos bulan ini</th>
+                            <td>{{ $quantity['monthly'] }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Pencapaian target bulan ini</th>
+                            <td>{{ round($quantity['monthly']/480, 2) }} %</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="panel-footer">
+                    <div class="btn-group btn-group-justified" role="group">
+                        <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
+                        <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Pos Katalog Saya</div>
+
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>URL Pos</th>
+                                <th>Tanggal Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($posts as $post)
+                                <tr>
+                                    <td>
+                                        <a href="//{{ $post->url }}" target="_blank" rel="noopener noreferrer">
+                                            {{ $post->url }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $post->updated_at }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    {{ $posts->links() }}
+                </div>
+
+                <div class="panel-footer">
+                    <div class="btn-group btn-group-justified" role="group">
+                        <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
+                        <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">Profil</div>
 
@@ -43,43 +111,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-info">
-                <div class="panel-heading">Pos Katalog Saya</div>
 
-                <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>URL Pos</th>
-                                <th>Tanggal Update</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($posts as $post)
-                                <tr>
-                                    <td>
-                                        <a href="//{{ $post->url }}" target="_blank" rel="noopener noreferrer">
-                                            {{ $post->url }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $post->updated_at }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    {{ $posts->links() }}
-                </div>
-
-                <div class="panel-footer">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
-                        <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 @endsection

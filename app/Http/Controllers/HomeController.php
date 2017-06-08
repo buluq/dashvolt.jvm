@@ -30,7 +30,17 @@ class HomeController extends Controller
             $query->where('user_id', 'like', Auth::id());
         })->orderBy('updated_at', 'desc')->paginate(10);
 
-        return view('home', ['posts' => $posts]);
+        $model = \App\Catalogue::query()->with('user')->with('product')->with('website');
+
+        $total = array(
+            'total'   => $model->count(),
+            'monthly' => $model
+                ->whereMonth('updated_at', date('m'))
+                ->whereYear('updated_at', date('Y'))
+                ->count(),
+        );
+
+        return view('home', ['posts' => $posts, 'quantity' => $total]);
     }
 
     public function website()
@@ -57,7 +67,7 @@ class HomeController extends Controller
 
         $links = \App\Catalogue::paginate(10);
 
-        return view('catalogue', ['links' => $links]);
+        return view('catalogue', ['links' => $links, 'monthly' => $monthly]);
     }
 
     public function journalCatalogue()
