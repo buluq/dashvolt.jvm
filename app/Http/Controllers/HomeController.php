@@ -67,7 +67,7 @@ class HomeController extends Controller
 
         $links = \App\Catalogue::paginate(10);
 
-        return view('catalogue', ['links' => $links, 'monthly' => $monthly]);
+        return view('catalogue', ['links' => $links]);
     }
 
     public function journalCatalogue()
