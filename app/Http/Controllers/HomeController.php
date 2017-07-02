@@ -26,15 +26,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = \App\Catalogue::whereHas('user', function ($query) {
-            $query->where('user_id', 'like', Auth::id());
-        })->orderBy('updated_at', 'desc')->paginate(10);
+        $posts = \App\Catalogue::whereHas('user', function ($query) { $query->where('user_id', 'like', Auth::id()); })
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
 
-        $model = \App\Catalogue::query()->with('user')->with('product')->with('website');
+        $stats = \App\Catalogue::query()
+            ->with('user')
+            ->with('product')
+            ->with('website');
 
         $total = array(
-            'total'   => $model->count(),
-            'monthly' => $model
+            'total'   => $stats->where('user_id', Auth::id())->count(),
+            'monthly' => $stats
                 ->whereMonth('updated_at', date('m'))
                 ->whereYear('updated_at', date('Y'))
                 ->count(),
@@ -67,7 +70,7 @@ class HomeController extends Controller
 
         $links = \App\Catalogue::paginate(10);
 
-        return view('catalogue', ['links' => $links, 'monthly' => $monthly]);
+        return view('catalogue', ['links' => $links]);
     }
 
     public function journalCatalogue()

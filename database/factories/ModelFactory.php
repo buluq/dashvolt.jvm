@@ -29,7 +29,7 @@ $factory->define(App\Website::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'domain' => $faker->domainName,
+        'domain' => $faker->unique()->domainName,
     ];
 });
 
@@ -37,7 +37,8 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->sentence(4),
+        'name' => $faker->unique()->word,
+        'title' => $faker->sentence(4),
     ];
 });
 

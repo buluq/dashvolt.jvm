@@ -4,35 +4,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <div class="panel panel-info">
-                <div class="panel-heading">Statistik Pos Katalog Saya</div>
-
-                <div class="panel-body">
-                    <table class="table table-hover">
-                        <tr>
-                            <th>Jumlah pos keseluruhan</th>
-                            <td>{{ $quantity['total'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Jumlah pos bulan ini</th>
-                            <td>{{ $quantity['monthly'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Pencapaian target bulan ini</th>
-                            <td>{{ round($quantity['monthly']/480, 2) }} %</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="panel-footer">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
-                        <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
-                    </div>
-                </div>
-            </div>
 
             <div class="panel panel-info">
                 <div class="panel-heading">Pos Katalog Saya</div>
@@ -105,6 +76,36 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">Statistik Pos Katalog Saya</div>
+
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Jumlah pos keseluruhan</th>
+                            <td>{{ $quantity['total'] }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Jumlah pos bulan ini</th>
+                            <td>{{ $quantity['monthly'] }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Pencapaian target bulan ini</th>
+                            <td>{{ round($quantity['monthly']/480, 2) }} %</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="panel-footer">
+                    <div class="btn-group btn-group-justified" role="group">
+                        <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat katalog</a>
+                        <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos</a>
+                    </div>
                 </div>
             </div>
         </div>
