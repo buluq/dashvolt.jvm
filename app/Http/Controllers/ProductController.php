@@ -7,6 +7,7 @@ use \DateTime;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Yajra\Datatables\Datatables;
 
 class ProductController extends Controller
 {
@@ -17,9 +18,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = \App\Product::paginate(10);
+        if (request()->ajax()) {
+            return Datatables::of(Product::query())->make(true);
+        }
 
-        return view('product', ['product' => $product]);
+        return view('product');
     }
 
     /**

@@ -27,6 +27,6 @@ Route::post('/journal/catalogue', 'HomeController@catalogueUpdate');
 Route::resource('website', 'WebsiteController');
 Route::resource('product', 'ProductController');
 
-Route::get('/import/product', 'ProductController@importForm');
+Route::get('/import/product', 'ProductController@importForm')->name('import_product');
 Route::post('/import/product', 'ProductController@import');
 Route::post('/export/{type}', 'ProductController@export');
