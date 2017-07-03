@@ -34,6 +34,10 @@
                             </thead>
                         </table>
                     </div>
+
+                    <div class="panel-footer">
+                        <a href="{{ route('catalogue_journal') }}" class="btn btn-block btn-primary" role="button">Kirim pos katalog</a>
+                    </div>
                 </div>
             </div>
         </div>

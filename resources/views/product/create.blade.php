@@ -13,7 +13,7 @@
 
                             <div class="form-group">
                                 <label for="product" class="control-label col-sm-2">
-                                    Nama produk
+                                    Kode produk
                                 </label>
 
                                 <div class="col-sm-10">
@@ -22,6 +22,22 @@
                                     @if ($errors->has('product'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('domain') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title" class="control-label col-sm-2">
+                                    Nama produk
+                                </label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="title" required>
+
+                                    @if ($errors->has('product'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('text') }}</strong>
                                         </span>
                                     @endif
                                 </div>

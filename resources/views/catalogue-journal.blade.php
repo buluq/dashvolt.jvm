@@ -56,7 +56,7 @@
                                 <div class="col-sm-10">
                                     <select name="product_id" class="form-control">
                                         @foreach ($products as $option)
-                                            <option value="{{ $option->id }}">{{ $option->name }}</option>
+                                            <option value="{{ $option->id }}">{{ $option->name }} - {{ $option->title }}</option>
                                         @endforeach
                                     </select>
                                 </div>
