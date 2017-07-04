@@ -62,7 +62,11 @@ class HomeController extends Controller
 
     public function catalogue()
     {
-        $model = \App\Catalogue::query()->with('user')->with('product')->with('website');
+        $model = \App\Catalogue::query()
+            ->with('user')
+            ->with('product')
+            ->with('website')
+            ->orderBy('updated_at', 'desc');
 
         if (request()->ajax()) {
             return Datatables::of($model)->make(true);
@@ -75,8 +79,8 @@ class HomeController extends Controller
 
     public function journalCatalogue()
     {
-        $websites = \App\Website::all();
-        $products = \App\Product::all();
+        $websites = \App\Website::orderBy('domain', 'asc')->get();
+        $products = \App\Product::orderBy('name', 'asc')->get();
 
         return view('catalogue-journal', ['websites' => $websites, 'products' => $products]);
     }

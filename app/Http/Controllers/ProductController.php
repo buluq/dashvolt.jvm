@@ -47,6 +47,7 @@ class ProductController extends Controller
             $request->all(),
             array(
                 'product' => 'required|max:255',
+                'title'   => 'required|max:255',
             )
         );
 
@@ -54,8 +55,9 @@ class ProductController extends Controller
             return back()->withInput()->withErrors($validator);
         }
 
-        $record = new \App\Product;
-        $record->name = $request->product;
+        $record        = new \App\Product;
+        $record->name  = $request->product;
+        $record->title = $request->title;
         $record->save();
 
         return redirect(route('product.index'));
