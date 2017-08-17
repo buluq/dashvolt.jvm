@@ -4,47 +4,37 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Daftar Katalog Online</div>
+                @component('components.datatable-panel')
+                    @slot('panel_class')
+                        panel-primary
+                    @endslot
 
-                    <div class="panel-body">
-                        <?php /* <ol>
-                            @foreach ($links as $link)
-                                <li>
-                                    <a href="//{{ $link->url }}" target="_blank" rel="noopener noreferrer">
-                                        {{ $link->url }}
-                                    </a>
-                                </li>
-                            @endforeach
+                    @slot('panel_title')
+                        Daftar Katalog Online
+                    @endslot
 
-                        </ol>
+                    @slot('table_id')
+                        catalogue-table
+                    @endslot
 
-                        {{ $links->links() }}
-                        */ ?>
+                    @slot('table_headers')
+                        <th>URL</th>
+                        <th>Produk</th>
+                        <th>Website</th>
+                        <th>Penulis</th>
+                        <th>Pembaruan</th>
+                    @endslot
 
-                        <table class="table table-hover" id="catalogue-table">
-                            <thead>
-                                <tr>
-                                    <th>URL</th>
-                                    <th>Produk</th>
-                                    <th>Website</th>
-                                    <th>Penulis</th>
-                                    <th>Pembaruan</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-
-                    <div class="panel-footer">
-                        <a href="{{ route('catalogue_journal') }}" class="btn btn-block btn-primary" role="button">Kirim pos katalog</a>
-                    </div>
-                </div>
+                    @slot('panel_actions')
+                        <a href="{{ route('catalogue.create') }}" class="btn btn-block btn-primary" role="button">Kirim pos katalog</a>
+                    @endslot
+                @endcomponent
             </div>
         </div>
     </div>
 @endsection
 
-@section('cssinline')
+@push('css')
     <style>
         #catalogue-table_length select,
         #catalogue-table_filter input {
@@ -52,27 +42,27 @@
             width: inherit;
         }
     </style>
-@endsection
+@endpush
 
-@section('jsinline')
-    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+@push('javascripts')
     <script>
         $(function() {
             $('#catalogue-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('catalogue') !!}',
+                ajax: '{{ route('catalogue.index') }}',
                 columns: [
-                    { data: 'url', name: 'url' },
-                    { data: 'product.name', name: 'product.name' },
-                    { data: 'website.domain', name: 'website.domain' },
-                    { data: 'user.name', name: 'user.name' },
-                    { data: 'updated_at', name: 'updated_at' },
+                    { data: 'url' },
+                    { data: 'product.name' },
+                    { data: 'website.domain' },
+                    { data: 'user.name' },
+                    { data: 'updated_at' },
                 ]
             });
         });
+    </script>
 
-
+    <script>
         $.when($.ready).then(function() { $("#catalogue-table_length select, #catalogue-table_filter input").ready().addClass("form-control"); });
     </script>
-@endsection
+@endpush

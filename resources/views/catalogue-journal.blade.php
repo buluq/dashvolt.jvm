@@ -8,7 +8,7 @@
                     <div class="panel-heading">Jurnal Pos Katalog</div>
 
                     <div class="panel-body">
-                        <form action="{{ route('catalogue_journal') }}" method="post" id="catalogue_journal" class="form-horizontal">
+                        <form action="{{ route('catalogue.store') }}" method="post" id="catalogue_journal" class="form-horizontal">
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 

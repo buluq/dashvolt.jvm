@@ -35,8 +35,8 @@
 
                 <div class="panel-footer">
                     <div class="btn-group btn-group-justified" role="group">
-                        <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
-                        <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
+                        <a href="{{ route('catalogue.index') }}" class="btn btn-default" role="button">Lihat semua pos katalog</a>
+                        <a href="{{ route('catalogue.create') }}" class="btn btn-primary" role="button">Kirim pos katalog</a>
                     </div>
                 </div>
             </div>
@@ -103,8 +103,8 @@
 
                 <div class="panel-footer">
                     <div class="btn-group btn-group-justified" role="group">
-                        <a href="{{ route('catalogue') }}" class="btn btn-default" role="button">Lihat katalog</a>
-                        <a href="{{ route('catalogue_journal') }}" class="btn btn-primary" role="button">Kirim pos</a>
+                        <a href="{{ route('catalogue.index') }}" class="btn btn-default" role="button">Lihat katalog</a>
+                        <a href="{{ route('catalogue.create') }}" class="btn btn-primary" role="button">Kirim pos</a>
                     </div>
                 </div>
             </div>
