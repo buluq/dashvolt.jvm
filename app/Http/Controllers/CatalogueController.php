@@ -24,7 +24,7 @@ class CatalogueController extends Controller
             return Datatables::of($model)->make(true);
         }
 
-        return view('catalogue');
+        return view('catalogue.index');
     }
 
     /**
@@ -37,7 +37,7 @@ class CatalogueController extends Controller
         $websites = \App\Website::orderBy('domain', 'asc')->get();
         $products = \App\Product::orderBy('name', 'asc')->get();
 
-        return view('catalogue-journal', ['websites' => $websites, 'products' => $products]);
+        return view('catalogue.create', ['websites' => $websites, 'products' => $products]);
     }
 
     /**
