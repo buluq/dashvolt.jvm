@@ -45,18 +45,4 @@ class HomeController extends Controller
 
         return view('home', ['posts' => $posts, 'quantity' => $total]);
     }
-
-    public function website()
-    {
-        $website = \App\Website::all();
-
-        return view('website', ['sites' => $website]);
-    }
-
-    public function product()
-    {
-        $product = \App\Product::paginate(10);
-
-        return view('product', ['product' => $product]);
-    }
 }

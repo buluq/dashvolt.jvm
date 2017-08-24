@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+   <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-primary">
@@ -25,6 +25,12 @@
                                         <strong>{{ Session::get('error') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+
+                            <div class="form-group">
+                                <span class="help-block">
+                                    <a href="{{ url('storage/templates/product-import.csv') }}"> Unduh file templat</a> untuk import data.
+                                </span>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Import file</button>
