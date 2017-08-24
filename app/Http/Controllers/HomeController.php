@@ -26,23 +26,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = \App\Catalogue::whereHas('user', function ($query) { $query->where('user_id', 'like', Auth::id()); })
-            ->orderBy('updated_at', 'desc')
-            ->paginate(10);
-
-        $stats = \App\Catalogue::query()
+        $query = \App\Catalogue::query()
             ->with('user')
             ->with('product')
             ->with('website');
 
-        $total = array(
-            'total'   => $stats->where('user_id', Auth::id())->count(),
-            'monthly' => $stats
+        if (request()->ajax()) {
+            return Datatables::of($query->where('user_id', Auth::id()))->make(true);
+        }
+
+        $stats = array(
+            'total'   => $query->where('user_id', Auth::id())->count(),
+            'monthly' => $query
                 ->whereMonth('updated_at', date('m'))
+                ->whereYear('updated_at', date('Y'))
+                ->count(),
+            'lastmonth' => $query
+                ->whereMonth('updated_at', date('m', strtotime("first day of previous month")))
                 ->whereYear('updated_at', date('Y'))
                 ->count(),
         );
 
-        return view('home', ['posts' => $posts, 'quantity' => $total]);
+
+        return view('home', ['stats' => $stats]);
     }
 }
