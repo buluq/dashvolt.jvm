@@ -22,7 +22,7 @@ class ProductController extends Controller
             return Datatables::of(Product::query())->make(true);
         }
 
-        return view('product');
+        return view('product.index');
     }
 
     /**
@@ -131,8 +131,8 @@ class ProductController extends Controller
                     $insert[] = array(
                         'name'  => $cell['name'],
                         'title' => $cell['title'],
-                        'created_at' => $datetime->format('m-d-y H:i:s'),
-                        'updated_at' => $datetime->format('m-d-y H:i:s'),
+                        'created_at' => $datetime->format('Y-m-d H:i:s'),
+                        'updated_at' => $datetime->format('Y-m-d H:i:s'),
                     );
                 }
 

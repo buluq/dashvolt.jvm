@@ -34,16 +34,6 @@
     </div>
 @endsection
 
-@push('css')
-    <style>
-        #catalogue-table_length select,
-        #catalogue-table_filter input {
-            display: inline-block;
-            width: inherit;
-        }
-    </style>
-@endpush
-
 @push('javascripts')
     <script>
         $(function() {
@@ -60,9 +50,5 @@
                 ]
             });
         });
-    </script>
-
-    <script>
-        $.when($.ready).then(function() { $("#catalogue-table_length select, #catalogue-table_filter input").ready().addClass("form-control"); });
     </script>
 @endpush

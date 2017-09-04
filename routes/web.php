@@ -19,13 +19,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/product', 'HomeController@product')->name('product');
-Route::get('/catalogue', 'HomeController@catalogue')->name('catalogue');
-Route::get('/journal/catalogue', 'HomeController@journalCatalogue')->name('catalogue_journal');
-Route::post('/journal/catalogue', 'HomeController@catalogueUpdate');
 
-Route::resource('website', 'WebsiteController');
+Route::resource('catalogue', 'CatalogueController');
 Route::resource('product', 'ProductController');
+Route::resource('website', 'WebsiteController');
 
 Route::get('/import/product', 'ProductController@importForm')->name('import_product');
 Route::post('/import/product', 'ProductController@import');
