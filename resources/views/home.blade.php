@@ -71,18 +71,18 @@
                     @slot('panel_body')
                         <table class="table table-hover">
                             <tr>
-                                <th>Jumlah pos keseluruhan</th>
-                                <td>{{ $stats['total'] }}</td>
-                            </tr>
-
-                            <tr>
                                 <th>Jumlah pos bulan ini</th>
                                 <td>{{ $stats['monthly'] }}</td>
                             </tr>
 
                             <tr>
+                                <th>Jumlah pos hari ini</th>
+                                <td>{{ $stats['today'] }}</td>
+                            </tr>
+
+                            <tr>
                                 <th>Pencapaian target bulan lalu</th>
-                                <td>{{ $stats['lastmonth'] }} / {{ round(($stats['lastmonth']/480)*100, 2) }} %</td>
+                                <td>{{ $stats['lastmonth'] }} ({{ round(($stats['lastmonth']/480)*100, 2) }}) %</td>
                             </tr>
 
                             <tr>
@@ -107,6 +107,10 @@
         </div>
     </div>
 @endsection
+
+@push('pagetitle')
+    - Beranda
+@endpush
 
 @push('javascripts')
     <script>
