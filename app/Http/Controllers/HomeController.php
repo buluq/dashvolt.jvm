@@ -26,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $statcontroller = new StatController;
+
         $query = \App\Catalogue::query()
             ->with('user')
             ->with('product')
@@ -36,15 +38,13 @@ class HomeController extends Controller
         }
 
         $stats = array(
-            'total'   => $query->where('user_id', Auth::id())->count(),
-            'monthly' => $query
-                ->whereMonth('updated_at', date('m'))
-                ->whereYear('updated_at', date('Y'))
-                ->count(),
+            'total'   => $statcontroller->getTotal(),
+            'monthly' => $statcontroller->getMonth(Auth::id()),
             'lastmonth' => $query
                 ->whereMonth('updated_at', date('m', strtotime("first day of previous month")))
                 ->whereYear('updated_at', date('Y'))
                 ->count(),
+            'today' => $statcontroller->getToday(),
         );
 
 
