@@ -57,6 +57,11 @@ class WebsiteController extends Controller
         }
 
         $record = new \App\Website;
+
+        if ($record->where('domain', $request->domain)->count() > 0) {
+            return back()->with('error', 'Double input. Please check your input.');
+        }
+
         $record->domain = $request->domain;
         $record->save();
 

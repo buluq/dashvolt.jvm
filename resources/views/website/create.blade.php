@@ -16,9 +16,9 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="domain" required autofocus>
 
-                                @if ($errors->has('domain'))
+                                @if ($message = Session::get('error'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('domain') }}</strong>
+                                        <strong>{{ Session::get('error') }}</strong>
                                     </span>
                                 @endif
                             </div>

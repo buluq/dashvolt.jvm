@@ -29,9 +29,9 @@
                             <input type="{{ $parameter['type'] }}" class="form-control" name="{{ $parameter['name'] }}" @if($parameter['required'] === 1) required @endif @if($parameter['autofocus'] === 1) autofocus @endif>
                         @endif
 
-                        @if ($errors->has($parameter['type']))
+                        @if (Session::get('error'))
                             <span class="help-block">
-                                <strong>{{ $errors->first($parameter['type']) }}</strong>
+                                <strong>{{ Session::get('error') }}</strong>
                             </span>
                         @endif
                     </div>
