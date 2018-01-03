@@ -19,27 +19,42 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Daftar <span class="caret"></span>
-                    </a>
+                @if (Auth::user()->hasRole('operator'))
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Daftar <span class="caret"></span>
+                        </a>
 
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('product.index') }}">Produk</a></li>
-                        <li><a href="{{ route('website.index') }}">Website</a></li>
-                        <li><a href="{{ route('catalogue.index') }}">Katalog</a></li>
-                    </ul>
-                </li>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('product.index') }}">Produk</a></li>
+                            <li><a href="{{ route('website.index') }}">Website</a></li>
+                            <li><a href="{{ route('catalogue.index') }}">Katalog</a></li>
+                        </ul>
+                    </li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Jurnal <span class="caret"></span>
-                    </a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Jurnal <span class="caret"></span>
+                        </a>
 
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('catalogue.create') }}">Katalog</a></li>
-                    </ul>
-                </li>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('catalogue.create') }}">Katalog</a></li>
+                            </ul>
+                    </li>
+                @endif
+                @if (Auth::user()->hasRole('sysadmin'))
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                             Administrasi <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('user.index') }}">Daftar akun</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->

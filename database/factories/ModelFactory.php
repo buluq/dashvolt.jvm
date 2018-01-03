@@ -12,42 +12,36 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('rahasia'),
-        'status' => 'enable',
-        'role_id' => $faker->randomDigitNotNull,
+        'name'           => $faker->name,
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => $password ?: $password = bcrypt('rahasia'),
+        'status'         => $faker->randomElement($array = array('Aktif', 'Tidak Aktif')),
         'remember_token' => str_random(10),
     ];
 });
 
 $factory->define(App\Website::class, function (Faker\Generator $faker) {
-    static $password;
-
     return [
         'domain' => $faker->unique()->domainName,
     ];
 });
 
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
-    static $password;
-
     return [
-        'name' => $faker->unique()->word,
+        'name'  => $faker->unique()->word,
         'title' => $faker->sentence(4),
     ];
 });
 
 $factory->define(App\Catalogue::class, function (Faker\Generator $faker) {
-    static $password;
-
     return [
-        'url' => $faker->url,
-        'user_id' => $faker->randomDigitNotNull,
+        'url'        => $faker->url,
+        'user_id'    => $faker->randomDigitNotNull,
         'product_id' => $faker->randomDigitNotNull,
         'website_id' => $faker->randomDigitNotNull,
     ];
