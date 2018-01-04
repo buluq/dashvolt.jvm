@@ -50,4 +50,11 @@ class HomeController extends Controller
 
         return view('home', ['stats' => $stats]);
     }
+
+    public function profile()
+    {
+        $user = \App\User::find(Auth::id());
+
+        return redirect(route('user.show', $user->id));
+    }
 }

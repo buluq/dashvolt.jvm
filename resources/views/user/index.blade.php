@@ -21,6 +21,8 @@
 						<th>Nama</th>
 						<th>Email</th>
 						<th>Status</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
 					@endslot
 
 					@slot('panel_actions')
@@ -40,9 +42,11 @@
 				serverSide: true,
 				ajax: '{{ route('user.index') }}',
 				columns: [
-					{ data: 'name', name: 'name' },
-					{ data: 'email', name: 'email' },
-					{ data: 'status', name: 'status' },
+					{ data: 'name' },
+					{ data: 'email' },
+					{ data: 'status', searchable: false, orderable: false },
+                    { data: 'show', searchable: false, orderable: false },
+                    { data: 'edit', searchable: false, orderable: false },
 				]
 			});
 		});

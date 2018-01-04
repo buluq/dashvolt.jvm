@@ -1,5 +1,5 @@
 <div class="panel {{ $panel_class }}">
-    <div class="panel-heading">Jurnal Pos Katalog</div>
+    <div class="panel-heading">{{ $form_title }}</div>
 
     <div class="panel-body">
         <form action="{{ $form_action }}" method="post" id="{{ $form_id }}" class="form-horizontal">
@@ -8,11 +8,11 @@
 
             @foreach ($panel_input as $input => $parameter)
                 <div class="form-group">
-                    <label for="{{ $parameter['name'] }}" class="control-label col-sm-2">
+                    <label for="{{ $parameter['name'] }}" class="control-label col-sm-3">
                         {{ $parameter['label'] }}
                     </label>
 
-                    <div class="col-sm-10">
+                    <div class="col-sm-9">
                         @if ($parameter['type'] == 'option')
                             <select name="{{ $parameter['name'] }}" class="form-control">
                                 @if($parameter['name'] == 'website_id')
@@ -26,7 +26,7 @@
                                 @endif
                             </select>
                         @else
-                            <input type="{{ $parameter['type'] }}" class="form-control" name="{{ $parameter['name'] }}" @if($parameter['required'] === 1) required @endif @if($parameter['autofocus'] === 1) autofocus @endif>
+                            <input type="{{ $parameter['type'] }}" class="form-control" name="{{ $parameter['name'] }}" @if ($parameter['value'] !== null) value="{{ $parameter['value'] }}" @endif  @if($parameter['required'] === 1) required @endif @if($parameter['autofocus'] === 1) autofocus @endif>
                         @endif
 
                         @if (Session::get('error'))
@@ -51,7 +51,7 @@
             </div>
 
             <div class="btn-group" role="group">
-                <button type="submit" class="btn btn-primary" form="{{ $form_id }}">Catat</button>
+                <button type="submit" class="btn btn-primary" form="{{ $form_id }}">Kirim</button>
             </div>
         </div>
     </div>

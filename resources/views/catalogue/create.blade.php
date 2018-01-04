@@ -5,6 +5,7 @@
         $component_data = array(
             'panel_class' => 'panel-primary',
             'form_id'     => 'catalogue_journal',
+            'form_title'  => 'Jurnal pos katalog',
             'form_action' => route('catalogue.store'),
             'products'    => $products,
             'panel_input' => array(
