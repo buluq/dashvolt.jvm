@@ -1,25 +1,40 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Daftar Website</div>
+<div class="row">
+    <div class="col-md-12">
+        @component('components.datatable-panel')
+            @slot('panel_class')
+                panel-primary
+            @endslot
 
-                <div class="panel-body">
-                    <ol>
-                        @foreach ($sites as $website)
-                            <li>
-                                <a href="//{{ $website->domain }}" target="_blank" rel="noopener noreferrer">
-                                    {{ $website->domain }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ol>
-                </div>
+            @slot('panel_title')
+                Daftar Website
+            @endslot
 
-                <div class="panel-footer">
-                    <a href="{{ route('website.create') }}" class="btn btn-primary btn-block" role="button">Tambahkan website</a>
-                </div>
-            </div>
-        </div>
+            @slot('table_id')
+                website-table
+            @endslot
+
+            @slot('table_headers')
+                <th>Domain</th>
+            @endslot
+
+            @slot('panel_actions')
+                <a href="{{ route('website.create') }}" class="btn btn-block btn-primary" role="button">Tambah Website</a>
+            @endslot
+        @endcomponent
     </div>
 </div>
+
+@push('javascripts')
+    <script>
+        $(function() {
+            $('#website-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('website.index') }}',
+                columns: [
+                    { data: 'domain' },
+                ]
+            });
+        });
+    </script>
+@endpush

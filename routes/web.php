@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('user', 'UserController');
 Route::resource('catalogue', 'CatalogueController');
 Route::resource('product', 'ProductController');
+Route::resource('stats', 'StatController');
 Route::resource('website', 'WebsiteController');
 
 Route::get('/import/product', 'ProductController@importForm')->name('import_product');

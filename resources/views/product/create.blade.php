@@ -19,9 +19,9 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="product" required autofocus>
 
-                                    @if ($errors->has('product'))
+                                    @if ($message = Session::get('error'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('domain') }}</strong>
+                                            <strong>{{ Session::get('error') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -35,9 +35,9 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="title" required>
 
-                                    @if ($errors->has('product'))
+                                    @if ($message = Session::get('error'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('text') }}</strong>
+                                            <strong>{{ Session::get('error') }}</strong>
                                         </span>
                                     @endif
                                 </div>

@@ -63,6 +63,11 @@ class CatalogueController extends Controller
         }
 
         $record             = new \App\Catalogue;
+
+        if ($record->where('url', $request->url)->count() > 0) {
+            return back()->with('error', 'Double input. Please check your input.');
+        }
+
         $record->url        = $request->url;
         $record->user_id    = $request->user_id;
         $record->product_id = $request->product_id;

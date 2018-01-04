@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Yajra\Datatables\Datatables;
 
 class WebsiteController extends Controller
 {
@@ -15,6 +16,12 @@ class WebsiteController extends Controller
      */
     public function index(Request $request)
     {
+         $model = \App\Website::query();
+
+        if (request()->ajax()) {
+            return Datatables::of($model)->make(true);
+        }
+
         $websites = Website::all();
 
         return view('website', ['sites' => $websites, 'request' => $request]);
@@ -50,6 +57,11 @@ class WebsiteController extends Controller
         }
 
         $record = new \App\Website;
+
+        if ($record->where('domain', $request->domain)->count() > 0) {
+            return back()->with('error', 'Double input. Please check your input.');
+        }
+
         $record->domain = $request->domain;
         $record->save();
 

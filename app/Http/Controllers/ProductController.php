@@ -56,11 +56,17 @@ class ProductController extends Controller
         }
 
         $record        = new \App\Product;
-        $record->name  = $request->product;
-        $record->title = $request->title;
-        $record->save();
 
-        return redirect(route('product.index'));
+        if ($record->where('name', $request->product)->count() == 0) {
+            $record->name  = $request->product;
+            $record->title = $request->title;
+            $record->save();
+
+            return redirect(route('product.index'));
+        }
+        else {
+            return back()->with('error', 'Double input. Please check your input.');
+        }
     }
 
     /**

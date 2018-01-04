@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public $fillable = ['name', 'title'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @since  0.1.0
+     * @var  array  $fillable  Larik dari kolom data yang diisikan.
+     */
+    public $fillable = array(
+        'name',
+        'title'
+    );
 }
