@@ -1,3 +1,5 @@
+{{-- \resources\components\navbar.blade.php --}}
+
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -12,13 +14,27 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                {{ config('app.name', 'Dashvolt') }}
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                @hasrole('Administrator Sistem')
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Administrasi Sistem <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('staff.index') }}">Daftar Pengguna</a></li>
+                            <li><a href="{{ route('roles.index') }}">Daftar Penugasan</a></li>
+                            <li><a href="{{ route('permissions.index') }}">Daftar Perizinan</a></li>
+                        </ul>
+                    </li>
+                @endhasrole
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Daftar <span class="caret"></span>
@@ -37,7 +53,9 @@
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ route('catalogue.create') }}">Katalog</a></li>
+                        @hasrole('Web Post Operator')
+                            <li><a href="{{ route('catalogue.create') }}">Katalog</a></li>
+                        @endhasrole
                     </ul>
                 </li>
             </ul>

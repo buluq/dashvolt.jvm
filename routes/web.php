@@ -11,10 +11,6 @@
 |
 */
 
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -22,6 +18,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('catalogue', 'CatalogueController');
 Route::resource('product', 'ProductController');
+Route::resource('staff', 'UserController');
+Route::resource('permissions', 'PermissionController');
+Route::resource('roles', 'RoleController');
 Route::resource('website', 'WebsiteController');
 
 Route::get('/import/product', 'ProductController@importForm')->name('import_product');
